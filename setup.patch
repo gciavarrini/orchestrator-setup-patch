@@ -1,5 +1,5 @@
 diff --git a/app-config.yaml b/app-config.yaml
-index c595b021..304873eb 100644
+index c595b021..61a0ed90 100644
 --- a/app-config.yaml
 +++ b/app-config.yaml
 @@ -18,7 +18,10 @@ backend:
@@ -28,8 +28,9 @@ index c595b021..304873eb 100644
 +      localPath: /tmp/orchestrator/repository
 +  dataIndexService:
 +    url: http://localhost:8899
+\ No newline at end of file
 diff --git a/packages/app/package.json b/packages/app/package.json
-index 00207739..57bc0b0b 100644
+index 51578611..74026f82 100644
 --- a/packages/app/package.json
 +++ b/packages/app/package.json
 @@ -53,7 +53,8 @@
@@ -41,7 +42,7 @@ index 00207739..57bc0b0b 100644
 +    "@janus-idp/backstage-plugin-orchestrator": "*"
    },
    "devDependencies": {
-     "@backstage/cli": "0.26.6",
+     "@backstage/cli": "0.26.10",
 diff --git a/packages/app/src/App.tsx b/packages/app/src/App.tsx
 index d601a5bd..97206822 100644
 --- a/packages/app/src/App.tsx
@@ -64,22 +65,21 @@ index d601a5bd..97206822 100644
        path="/catalog-import"
        element={
 diff --git a/packages/app/src/components/Root/Root.tsx b/packages/app/src/components/Root/Root.tsx
-index 76d117bb..e14328c0 100644
+index b1c79456..e824075f 100644
 --- a/packages/app/src/components/Root/Root.tsx
 +++ b/packages/app/src/components/Root/Root.tsx
-@@ -26,6 +26,8 @@ import MapIcon from '@mui/icons-material/MyLocation';
+@@ -24,6 +24,7 @@ import LibraryBooks from '@mui/icons-material/LibraryBooks';
+ import MenuIcon from '@mui/icons-material/Menu';
  import SearchIcon from '@mui/icons-material/Search';
  import { makeStyles } from 'tss-react/mui';
- 
 +import { OrchestratorIcon } from '@janus-idp/backstage-plugin-orchestrator';
-+
+ 
  import LogoFull from './LogoFull';
  import LogoIcon from './LogoIcon';
- 
-@@ -97,6 +99,11 @@ export const Root = ({
-             to="tech-radar"
-             text="Tech Radar"
-           />
+@@ -92,6 +93,11 @@ export const Root = ({
+         <SidebarDivider />
+         <SidebarScrollWrapper>
+           {/* Items in this group will be scrollable if they run out of space */}
 +          <SidebarItem
 +           icon={OrchestratorIcon as IconComponent}
 +           to="orchestrator"
@@ -89,30 +89,28 @@ index 76d117bb..e14328c0 100644
        </SidebarGroup>
        <SidebarSpace />
 diff --git a/packages/backend/package.json b/packages/backend/package.json
-index ced21d77..9bc8672d 100644
+index 3a990334..80a605ae 100644
 --- a/packages/backend/package.json
 +++ b/packages/backend/package.json
 @@ -36,7 +36,8 @@
-     "@backstage/backend-dynamic-feature-service": "^0.2.10",
-     "@backstage/cli-node": "^0.2.5",
+     "@backstage/backend-dynamic-feature-service": "^0.2.14",
+     "@backstage/cli-node": "^0.2.6",
      "@janus-idp/backstage-plugin-rbac-backend": "*",
 -    "app": "*"
 +    "app": "*",
 +    "@janus-idp/backstage-plugin-orchestrator-backend": "*"
    },
    "devDependencies": {
-     "@backstage/cli": "0.26.6"
+     "@backstage/cli": "0.26.10"
 diff --git a/packages/backend/src/index.ts b/packages/backend/src/index.ts
-index 476f3f33..5779c517 100644
+index 476f3f33..87d446ee 100644
 --- a/packages/backend/src/index.ts
 +++ b/packages/backend/src/index.ts
-@@ -42,7 +42,7 @@ backend.add(
+@@ -42,6 +42,7 @@ backend.add(
  
  // permission plugin
  backend.add(import('@janus-idp/backstage-plugin-rbac-backend'));
--
 +backend.add(import('@janus-idp/backstage-plugin-orchestrator-backend/alpha'));
+ 
  // search plugin
  backend.add(import('@backstage/plugin-search-backend/alpha'));
- backend.add(import('@backstage/plugin-search-backend-module-catalog/alpha'));
-
