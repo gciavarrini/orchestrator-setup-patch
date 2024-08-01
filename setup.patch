@@ -64,19 +64,22 @@ index d601a5bd..97206822 100644
      <Route
        path="/catalog-import"
        element={
-iff --git a/packages/app/src/components/Root/Root.tsx b/packages/app/src/components/Root/Root.tsx
-index 2fae04ed..2a15a474 100644
+diff --git a/packages/app/src/components/Root/Root.tsx b/packages/app/src/components/Root/Root.tsx
+index 2fae04ed..6c0be1b7 100644
 --- a/packages/app/src/components/Root/Root.tsx
 +++ b/packages/app/src/components/Root/Root.tsx
-@@ -26,6 +26,7 @@ import MenuIcon from '@mui/icons-material/Menu';
+@@ -26,9 +26,9 @@ import MenuIcon from '@mui/icons-material/Menu';
  import GroupIcon from '@mui/icons-material/People';
  import SearchIcon from '@mui/icons-material/Search';
  import { makeStyles } from 'tss-react/mui';
-+import { OrchestratorIcon } from '@janus-idp/backstage-plugin-orchestrator';
- 
+-
  import LogoFull from './LogoFull';
  import LogoIcon from './LogoIcon';
-@@ -99,6 +100,11 @@ export const Root = ({
++import { OrchestratorIcon } from '@janus-idp/backstage-plugin-orchestrator';
+ 
+ const useSidebarLogoStyles = makeStyles()({
+   root: {
+@@ -99,6 +99,11 @@ export const Root = ({
          <SidebarDivider />
          <SidebarScrollWrapper>
            {/* Items in this group will be scrollable if they run out of space */}
@@ -103,10 +106,10 @@ index 054c68fb..e7fb020a 100644
    "devDependencies": {
      "@backstage/cli": "0.26.11"
 diff --git a/packages/backend/src/index.ts b/packages/backend/src/index.ts
-index 476f3f33..87d446ee 100644
+index 8348d75d..676be51c 100644
 --- a/packages/backend/src/index.ts
 +++ b/packages/backend/src/index.ts
-@@ -42,6 +42,7 @@ backend.add(
+@@ -45,6 +45,7 @@ backend.add(
  
  // permission plugin
  backend.add(import('@janus-idp/backstage-plugin-rbac-backend'));
