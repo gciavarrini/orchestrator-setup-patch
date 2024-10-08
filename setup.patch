@@ -113,7 +113,7 @@ index 8348d75d..676be51c 100644
  
  // permission plugin
  backend.add(import('@janus-idp/backstage-plugin-rbac-backend'));
-+backend.add(import('@janus-idp/backstage-plugin-orchestrator-backend/alpha'));
++backend.add(import('@janus-idp/backstage-plugin-orchestrator-backend'));
  
  // search plugin
  backend.add(import('@backstage/plugin-search-backend/alpha'));
